@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.mysql.jdbc.Driver;
-
 public class DeletingFromStudentInfo
 {
 
@@ -17,14 +15,15 @@ public class DeletingFromStudentInfo
 		Connection con=null;
 		try {
 			//load the  driver 
-			Driver dref=new Driver();
-		    DriverManager.registerDriver(dref);
-		    
-		    
+			/*Driver dref=new Driver();
+		    DriverManager.registerDriver(dref);//  tightly coupled
+		    */
+			Class.forName("com.mysql.jdbc.Driver");// loose couple
+
 		    // get the connection via driver
 			  String dburl="jdbc:mysql://localhost:3306/Raghava?user=root&password=root";
 		       con = DriverManager.getConnection(dburl);
-		
+
 		    // issue sql query 
 		       String query="delete from student_info where id=?";
 		        pstmt = con.prepareStatement(query);
@@ -44,13 +43,14 @@ public class DeletingFromStudentInfo
 		       }
 		       else
 		       {
-		    	   System.out.println("not deleted some problem exist ");
+		    	   System.out.println(" not sucessfully deleted");
 		       }
-		     
+		       
 		}   
 		
 		
-		catch (SQLException e) {
+		catch ( ClassNotFoundException | SQLException e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
