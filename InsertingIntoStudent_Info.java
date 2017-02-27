@@ -18,14 +18,17 @@ public class InsertingIntoStudent_Info {
 		try {
 			// step 1 driver register
 			
-			Driver dref =new Driver();
-		    DriverManager.registerDriver(dref);
-		    
+		/*	Driver dref =new Driver();
+		    DriverManager.registerDriver(dref);*/
+			Class.forName("com.mysql.jdbc.Driver");// loose couple
+
 		    // get the connection 
 		    
 		    String dburl="jdbc:mysql://localhost:3306/Raghava?user=root&password=root";
 		   con= DriverManager.getConnection(dburl);
-		    
+		   
+
+		   
 		    // issue sql query 
 		    
 		    String query ="insert into student_info value (?,?,?)";
@@ -57,7 +60,7 @@ public class InsertingIntoStudent_Info {
 		   System.out.println("sucessfully added "+n+"row");
 			}
 		
-		catch (SQLException e)
+		catch (SQLException |ClassNotFoundException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
