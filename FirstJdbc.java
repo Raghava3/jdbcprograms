@@ -18,18 +18,26 @@ public class FirstJdbc {
 		Statement stmt=null;
 	
 		try {
+			
+			
+			
 			// step 1 loading the  driver 
-			Driver dref = new Driver();
-		  DriverManager.registerDriver(dref);
+		/*	
+			Driver dref =new Driver();// tightly coupled 
+		    DriverManager.registerDriver(dref);
+		    */
+		    
+			Class.forName("com.mysql.jdbc.Driver");// loose couple
 		
 		  
 		  // get the db connection via driver
 		  
-		  String dburl="jdbc:mysql://localhost:3306/Raghava?user=root&password=root";
-		  con=DriverManager.getConnection(dburl);
+		  String dburl="jdbc:mysql://localhost:3306/Raghava?user=root&password=root";// sql query 
+		  con=DriverManager.getConnection(dburl);// issue the sql query via connection 
 		  
 		  //3 issue sql query 
 		  String query="select * from student_info";
+		  //creating the statement 
 		  stmt=con.createStatement();
 		  rs= stmt.executeQuery(query);
 		  
@@ -45,7 +53,7 @@ public class FirstJdbc {
               System.out.println("--------------------------------");
 		  }
 		
-		} catch (SQLException e) {
+		} catch ( ClassNotFoundException |SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
