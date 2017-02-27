@@ -83,6 +83,6 @@ public class InsertingIntoStudent_Info {
 			}
 		}
 		
-		
+		scn.close();
 	}
 }
