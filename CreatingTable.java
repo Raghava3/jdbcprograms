@@ -44,23 +44,30 @@ public class CreatingTable {
 		
 		finally
 		{
-			try
-			{
+			
 				if(con!=null)
 				{
+					try{
+					
 					con.close();
+				}
+					catch(SQLException e)
+					{
+						e.printStackTrace();
+					}
 				}
 				if(pstmt!=null)
 				{
+				try{
 					pstmt.close();
 				}
-				
+				catch(SQLException e)
+				{
+					e.printStackTrace();
+				}
 				
 			}
-			catch(SQLException e)
-			{
-				e.printStackTrace();
-			}
+			
 		}
 		
 		
