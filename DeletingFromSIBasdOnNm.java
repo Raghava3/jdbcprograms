@@ -53,25 +53,32 @@ public class DeletingFromSIBasdOnNm
 		}
 		finally
 		{
-			try
-			{
-				if(con!=null)
+			if(con!=null)
+			{	
+				try
 				{
-					con.close();
+				con.close();
 				}
-				if(pstmt!=null)
+				catch(SQLException e)
 				{
-					pstmt.close();
+					e.printStackTrace();
 				}
-				
-				
 			}
-			catch(SQLException e)
-			{
-				e.printStackTrace();
-			}
+			if(con!=null)
+			{	
+				try
+				{
+				con.close();
+				}
+				catch(SQLException e)
+				{
+					e.printStackTrace();
+				}
+			   
+		     }
+		}
 		}
 		
 	}
 
-}
+
