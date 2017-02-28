@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.mysql.jdbc.Driver;
 
 public class InsertingIntoStudent_Info {
 
@@ -69,23 +68,31 @@ public class InsertingIntoStudent_Info {
 		
 		finally
 		{
-			try{
+			
 				if(con!=null)
-				{
+				{	
+					try
+					{
 					con.close();
+					}
+					catch(SQLException e)
+					{
+						e.printStackTrace();
+					}
 				}
-				if(pstm!=null)
-				{
-					pstm.close();
-				}
+				if(con!=null)
+				{	
+					try
+					{
+					con.close();
+					}
+					catch(SQLException e)
+					{
+						e.printStackTrace();
+					}
+				   
+			     }
 			}
-			catch (SQLException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
 		scn.close();
 	}
 }
