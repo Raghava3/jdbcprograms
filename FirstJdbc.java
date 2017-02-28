@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 import com.mysql.jdbc.Driver;
 
@@ -20,7 +21,7 @@ public class FirstJdbc {
 		try {
 			
 			
-			
+			Scanner scn=new Scanner(System.in);
 			// step 1 loading the  driver 
 		/*	DeletingFromSIBasdOnNm
 			Driver dref =new Driver();// tightly coupled 
@@ -28,11 +29,14 @@ public class FirstJdbc {
 		    */
 		    
 			Class.forName("com.mysql.jdbc.Driver");// loose couple
-		
+		System.out.println(" please enter the user name");// to take username from user
+		String username=scn.next();
+		System.out.println("plsease enter the password");// to take password from user 
+		String password=scn.next();
 		  
 		  // get the db connection via driver
 		  
-		  String dburl="jdbc:mysql://localhost:3306/Raghava?user=root&password=root";// sql query 
+		  String dburl="jdbc:mysql://localhost:3306/Raghava?user="+username+"&password="+password;// sql query 
 		  con=DriverManager.getConnection(dburl);// issue the sql query via connection 
 		  
 		  //3 issue sql query 
