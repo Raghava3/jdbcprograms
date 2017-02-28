@@ -22,7 +22,7 @@ public class FirstJdbc {
 			
 			
 			// step 1 loading the  driver 
-		/*	
+		/*	DeletingFromSIBasdOnNm
 			Driver dref =new Driver();// tightly coupled 
 		    DriverManager.registerDriver(dref);
 		    */
@@ -40,17 +40,26 @@ public class FirstJdbc {
 		  //creating the statement 
 		  stmt=con.createStatement();
 		  rs= stmt.executeQuery(query);
-		  
+		  System.out.println("id\tStudent name\tage\t");
 		  while(rs.next())
 		  {
 			  int id=rs.getInt("id");
 			  String StudentName =rs.getString("name");
 			  int age = rs.getInt("age");
-			  
+			 /* 
 			  System.out.println("id is          ->\t"+id);
 			  System.out.println("Student name is->\t"+StudentName);
-              System.out.println("age is         ->\t"+age);	
-              System.out.println("--------------------------------");
+              System.out.println("age is         DeletingFromSIBasdOnNm->\t"+age);	*/
+			  
+			  
+			  
+			
+			  System.out.println(id+"\t"+StudentName+"\t"+age);
+         //     System.out.println("age is         ->\t"+age);	
+			  
+			  
+			  
+             
 		  }
 		
 		} catch ( ClassNotFoundException |SQLException e) {
@@ -60,25 +69,45 @@ public class FirstJdbc {
 		
 finally
 {
-	try{
-		if(con!=null)
+	if(con!=null)
+	{	
+		try
 		{
-			con.close();
+		con.close();
 		}
-		if (stmt!=null)
+		catch(SQLException e)
 		{
-			stmt.close();
-		}
-		if(rs!=null)
-		{
-			rs.close();
+			e.printStackTrace();
 		}
 	}
-	catch (SQLException e) {
+	if(con!=null)
+	{	
+		try
+		{
+		con.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	   
+     }
+
+		if(rs!=null)
+		{
+			try
+			{
+			rs.close();
+			}
+	
+	catch (SQLException e) 
+	{
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	}
 
 }
+	}
 }
+
